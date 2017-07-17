@@ -1,0 +1,35 @@
+{
+  "name": "games.lottery.com",
+  "version": "1.0.0",
+  "description": "games.lottery.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.18.6",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-group-css-media-queries": "^1.2.0",
+    "gulp-gzip": "^1.4.0",
+    "gulp-if": "2.0.0",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-purifycss": "^0.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-selectors": "^0.1.10",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "2.0.0",
+    "gulp-util": "3.0.7",
+    "yargs": "4.6.0"
+  },
+  "dependencies": {
+    "gulp-shorthand": "^1.1.0"
+  }
+}

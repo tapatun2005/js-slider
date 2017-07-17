@@ -1,0 +1,70 @@
+// Variables
+$white: #fff;
+
+.slider {
+	position: relative;
+	background: grey;
+	&__nav {
+		span {
+			position:absolute;
+			top:50%; 
+			transform: translateY(-50%);
+			background-color: $white;
+			padding: 10px;
+			cursor:pointer;
+			z-index: 4;
+			&:last-child {
+				right: 0;
+			}
+		}
+	}
+	&__list {
+		list-style:none;
+		padding: 0;
+		width: 100%;
+		padding-top: 45%;
+		overflow:hidden;
+		position:relative;
+
+		li {
+			position:absolute;
+			width: 100px;
+			height: 50%;
+			background: green;
+			left:50%;
+			top:50%;
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(.75);
+			transition: transform .2s ease-in-out, opacity .2s ease-in-out;
+			&.is-active,
+			&.is-left,
+			&.is-right {
+				opacity: 1;
+			}
+			&.is-active {
+				z-index: 3;
+				transform: translate(-50%, -50%);
+			}
+			&.is-left {
+				z-index: 2;
+				transform: translate(-200%, -50%);	
+			}
+			&.is-right {
+				z-index: 2;
+				transform: translate(100%, -50%);	
+			}
+			&.is-passive-left,
+			&.is-passive-right {
+				opacity: .5;
+			}
+			&.is-passive-left {
+				z-index: 1;
+				transform: translate(-325%, -50%) scale(.75);	
+			}
+			&.is-passive-right {
+				z-index: 1;
+				transform: translate(225%, -50%) scale(.75);	
+			}
+		}
+	}
+}
