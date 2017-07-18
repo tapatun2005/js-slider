@@ -6,7 +6,9 @@ const defaultOptions = {
 	leftPassiveClass:"is-passive-left",
 	prevButton: "js-next",
 	nextButton: "js-prev",
-	navWrapper: "slider__nav"
+	navWrapper: "slider__nav", 
+	navPrevText: "<",
+	navNextText: ">",
 }
 
 class Slider {
@@ -24,7 +26,9 @@ class Slider {
 			leftPassiveClass: options.leftPassiveClass || defaultOptions.leftPassiveClass,
 			prevButton: options.prevButton || defaultOptions.prevButton,
 			nextButton: options.nextButton || defaultOptions.nextButton,
-			navWrapper: options.navWrapper || defaultOptions.navWrapper
+			navWrapper: options.navWrapper || defaultOptions.navWrapper,
+			prevText: options.prevText || defaultOptions.prevText,
+			nextText: options.nextText || defaultOptions.nextText
 		};
 		this.initialClasses();
 		this.buildNavigation();
@@ -104,8 +108,8 @@ class Slider {
 
 	buildNavigation() {
 		const navButtons = `
-				<span class='${this.options.prevButton}'><</span>
-				<span class='${this.options.nextButton}'>></span>
+				<span class='${this.options.prevButton}'>${this.options.prevText}</span>
+				<span class='${this.options.nextButton}'>${this.options.nextText}</span>
 			`;
 
 		const navWrapper = document.createElement('div');
