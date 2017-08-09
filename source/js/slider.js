@@ -7,8 +7,8 @@ const defaultOptions = {
 	prevButton: "js-next",
 	nextButton: "js-prev",
 	navWrapper: "slider__nav", 
-	navPrevText: "<",
-	navNextText: ">",
+	prevText: "<",
+	nextText: ">",
 }
 
 class Slider {
@@ -92,8 +92,8 @@ class Slider {
 			nextRightClass = this.indexExist(direction, rightClass),
 			nextRightPassClass = this.indexExist(direction, rightPassClass);
 		
-		console.log(`${leftPassClass}, ${leftClass}, ${activeClass}, ${rightClass}, ${rightPassClass}`);
-		console.log(`${nextLeftPassClass}, ${nextLeftClass}, ${nextActiveClass}, ${nextRightClass}, ${nextRightPassClass}`);
+		// console.log(`${leftPassClass}, ${leftClass}, ${activeClass}, ${rightClass}, ${rightPassClass}`);
+		// console.log(`${nextLeftPassClass}, ${nextLeftClass}, ${nextActiveClass}, ${nextRightClass}, ${nextRightPassClass}`);
 
 		this.removeClasses();
 
