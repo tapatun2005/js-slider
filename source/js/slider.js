@@ -7,8 +7,8 @@ const defaultOptions = {
 	prevButton: "js-next",
 	nextButton: "js-prev",
 	navWrapper: "slider__nav", 
-	prevText: "<",
-	nextText: ">",
+	prevText: "",
+	nextText: "",
 }
 
 class Slider {
@@ -28,21 +28,31 @@ class Slider {
 			nextButton: options.nextButton || defaultOptions.nextButton,
 			navWrapper: options.navWrapper || defaultOptions.navWrapper,
 			prevText: options.prevText || defaultOptions.prevText,
-			nextText: options.nextText || defaultOptions.nextText
+			nextText: options.nextText || defaultOptions.nextText,
+			auto: options.auto || false,
+			speed: options.speed || 200
 		};
 		this.initialClasses();
-		this.buildNavigation();
-		this.swipeOnMobile();
+
+		if(this.options.auto == false ) {
+			this.buildNavigation();
+			this.swipeOnMobile();
+		} else {
+			this.animation();
+		}
 	}
 
 	initialClasses(){
+		this.children[0].classList.add(this.options.leftClass);
+		this.children[1].classList.add(this.options.activeClass);
+		
+		if (this.children.length > 2) {
+			this.children[2].classList.add(this.options.rightClass);
+		}
 		if( this.children.length > 5) {
 			this.children[this.children.length - 1].classList.add(this.options.leftPassiveClass);
 			this.children[3].classList.add(this.options.rightPassiveClass);
-		}
-		this.children[0].classList.add(this.options.leftClass);
-		this.children[1].classList.add(this.options.activeClass);
-		this.children[2].classList.add(this.options.rightClass);
+		} 
 	}
 
 	indexOf(className){
@@ -57,7 +67,7 @@ class Slider {
 	removeClasses(){
 		let i;
 		for (i = 0; i < this.children.length; i++) {
-			this.children[i].className = "";
+			this.children[i].classList.remove('is-active', 'is-right', 'is-left', 'is-passive-left', 'is-passive-right');
 		}	
 	}
 
@@ -78,6 +88,7 @@ class Slider {
 	}
 
 	changeClasses(direction) {
+
 		let total = this.children.length - 1;
 		
 		let leftPassClass = parseInt(this.indexOf(this.options.leftPassiveClass)),
@@ -91,9 +102,6 @@ class Slider {
 			nextActiveClass = this.indexExist(direction, activeClass),
 			nextRightClass = this.indexExist(direction, rightClass),
 			nextRightPassClass = this.indexExist(direction, rightPassClass);
-		
-		// console.log(`${leftPassClass}, ${leftClass}, ${activeClass}, ${rightClass}, ${rightPassClass}`);
-		// console.log(`${nextLeftPassClass}, ${nextLeftClass}, ${nextActiveClass}, ${nextRightClass}, ${nextRightPassClass}`);
 
 		this.removeClasses();
 
@@ -111,7 +119,6 @@ class Slider {
 				<span class='${this.options.prevButton}'>${this.options.prevText}</span>
 				<span class='${this.options.nextButton}'>${this.options.nextText}</span>
 			`;
-
 		const navWrapper = document.createElement('div');
 		
 		navWrapper.classList.add(this.options.navWrapper);
@@ -130,6 +137,15 @@ class Slider {
 		}, false);
 	}
 
+	// Auto rotating
+	animation(){
+		if(this.options.auto == true ){
+			setInterval(() => {
+				requestAnimationFrame(this.changeClasses.bind(this, 'next'));
+			}, this.options.speed);
+		}
+	}
+
 	// SWIPE on mobile
 	swipeOnMobile(){
 		let touchsurface = this.selector,
@@ -139,7 +155,7 @@ class Slider {
 			startY,
 			distX,
 			distY,
-			threshold = 150, //required min distance traveled to be considered swipe
+			threshold = 100, //required min distance traveled to be considered swipe
 			restraint = 100, // maximum distance allowed at the same time in perpendicular direction
 			allowedTime = 300,
 			elapsedTime, 

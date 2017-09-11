@@ -17,12 +17,25 @@
 			<li>Hello-6</li>
 		</ul>
 	</div>
+
+	<div class="slider slider-auto">
+		<ul id="js-slider-2" class="slider__list">
+			<li><a href="">Hello-1</a></li>
+			<li>Hello-2</li>
+			<li>Hello-3</li>
+			<li><a href="">Hello-4</a></li>
+			<li>Hello-5</li>
+			<li>Hello-6</li>
+		</ul>
+	</div>
+
 	
 
-<script src="js/app.js"></script>
+<script src="js/slider.min.js"></script>
 <script>
 	var element = document.getElementById('js-slider');
 	var slider = new Slider(element);
+	var sliderTow = new Slider(elementTwo, {auto: true, speed: 2000});
 </script>
 </body>
 </html>

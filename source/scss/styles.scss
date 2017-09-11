@@ -68,3 +68,9 @@ $white: #fff;
 		}
 	}
 }
+
+.slider-auto {
+	li {
+		transition: transform 2s linear, opacity 2s linear 1s;
+	}
+}
